@@ -26,6 +26,13 @@ class _HomeState extends State<Home> {
           ThemeButton(changeTheme: widget.ChangeThemeMode)
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: Icon(Icons.explore), label: "EXPLORE"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.card_giftcard), label: "Recipes"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart), label: "to Buy")
+      ]),
     );
   }
 }
