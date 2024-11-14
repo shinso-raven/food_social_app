@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:social_food_app/screens/explore_screen.dart';
+import 'package:social_food_app/screens/recipes_screen.dart';
+import 'package:social_food_app/screens/tobuy_screen.dart';
 
 import 'components/Theme_button.dart';
 
@@ -13,6 +16,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int currentScreen = 0;
+  List<Widget> screens = [ExploreScreen(), RecipesScreen(), TobuyScreen()];
+
+  void ChangeScreen(int index) {
+    setState(() {
+      currentScreen = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,13 +38,22 @@ class _HomeState extends State<Home> {
           ThemeButton(changeTheme: widget.ChangeThemeMode)
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(icon: Icon(Icons.explore), label: "EXPLORE"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard), label: "Recipes"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart), label: "to Buy")
-      ]),
+      bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.green,
+          unselectedItemColor: Colors.grey,
+          onTap: (value) {
+            ChangeScreen(value);
+          },
+          currentIndex: currentScreen,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.explore), label: "EXPLORE"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.card_giftcard), label: "Recipes"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart), label: "to Buy")
+          ]),
+      body: screens[currentScreen],
     );
   }
 }
