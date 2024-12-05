@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_food_app/components/circle_image.dart';
 import 'package:social_food_app/models/post.dart';
 
 class FriendPostListView extends StatelessWidget {
@@ -44,6 +45,38 @@ class FriendPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              CircleImageWidget(
+                imageProvider: AssetImage(post.profileImageUrl),
+                radius: 28,
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text("${post.id}",
+                    style: Theme.of(context).textTheme.bodyLarge),
+                Text(
+                  post.comment,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                )
+              ])
+            ],
+          ),
+          Center(
+            child: Image(
+                width: 300,
+                image:
+                    AssetImage("assets/magazine_pics/" + post.foodPictureUrl)),
+          ),
+          Text('${post.timestamp} minutes ago')
+        ],
+      ),
+    );
   }
 }
