@@ -50,6 +50,7 @@ class FriendPost extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleImageWidget(
                 imageProvider: AssetImage(post.profileImageUrl),
@@ -58,17 +59,27 @@ class FriendPost extends StatelessWidget {
               SizedBox(
                 width: 8,
               ),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                // Text("${post.id}",
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 5),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Text("${post.id}",
+                        Wrap(
+                          children: [
+                            Text(post.comment,
+                                style: Theme.of(context).textTheme.bodyLarge)
+                          ],
+                        ),
 
-                Text(post.comment,
-                    style: Theme.of(context).textTheme.bodyLarge),
-
-                Text(
-                  '${post.timestamp} minutes ago',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                )
-              ])
+                        Text(
+                          '${post.timestamp} minutes ago',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        )
+                      ]),
+                ),
+              )
             ],
           ),
           Center(

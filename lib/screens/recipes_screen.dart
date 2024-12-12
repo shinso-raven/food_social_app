@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:social_food_app/api/api_service.dart';
 import 'package:social_food_app/models/simple_recipe.dart';
 
+import '../components/recipe_thumbnail.dart';
+
 class RecipesScreen extends StatelessWidget {
   RecipesScreen({super.key});
 
@@ -36,24 +38,7 @@ class RecipesGrid extends StatelessWidget {
       itemBuilder: (context, index) {
         final simpleRecipe = recipes[index];
 
-        return Container(
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  simpleRecipe.dishImage,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(simpleRecipe.title,
-                  maxLines: 1, style: Theme.of(context).textTheme.bodyLarge)
-            ],
-          ),
-        );
+        return RecipeThumbnail(simpleRecipe: simpleRecipe);
       },
     );
   }
