@@ -59,10 +59,13 @@ class FriendPost extends StatelessWidget {
                 width: 8,
               ),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text("${post.id}",
+                // Text("${post.id}",
+
+                Text(post.comment,
                     style: Theme.of(context).textTheme.bodyLarge),
+
                 Text(
-                  post.comment,
+                  '${post.timestamp} minutes ago',
                   style: Theme.of(context).textTheme.bodyMedium,
                 )
               ])
@@ -74,7 +77,6 @@ class FriendPost extends StatelessWidget {
                 image:
                     AssetImage("assets/magazine_pics/" + post.foodPictureUrl)),
           ),
-          Text('${post.timestamp} minutes ago')
         ],
       ),
     );
